@@ -1,0 +1,63 @@
+--[=[
+ d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
+88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
+88      88    88    88            odD'      88      88    88 88ooo88 
+88  ooo 88    88    88          .88'        88      88    88 88~~~88 
+88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88 
+ Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER
+]=]
+
+-- Instances: 4 | Scripts: 1 | Modules: 0
+local G2L = {};
+
+-- StarterGui.ScreenGui
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+
+-- StarterGui.ScreenGui.Frame
+G2L["2"] = Instance.new("Frame", G2L["1"]);
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["2"]["Size"] = UDim2.new(0, 312, 0, 54);
+G2L["2"]["Position"] = UDim2.new(0.30788174271583557, 0, 0.17835670709609985, 0);
+
+-- StarterGui.ScreenGui.Frame.TextButton
+G2L["3"] = Instance.new("TextButton", G2L["2"]);
+G2L["3"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["3"]["TextSize"] = 14;
+G2L["3"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["3"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["3"]["Size"] = UDim2.new(0, 200, 0, 50);
+G2L["3"]["Text"] = [[W]];
+G2L["3"]["Position"] = UDim2.new(0.1794871836900711, 0, 0.06613759696483612, 0);
+
+-- StarterGui.ScreenGui.Frame.TextButton.LocalScript
+G2L["4"] = Instance.new("LocalScript", G2L["3"]);
+
+
+-- StarterGui.ScreenGui.Frame.TextButton.LocalScript
+local function C_4()
+local script = G2L["4"];
+	-- // Variables \\ --
+	
+	local isPressed = false
+	
+	
+	-- // Scripts \\ --
+	
+	script.Parent.MouseButton1Down:Connect(function()
+		isPressed = true
+		while isPressed do --DONT TOUCH HERE
+			getfenv().keytoclick = "W"
+			local vim = game:service("VirtualInputManager")
+			vim:SendKeyEvent(true, keytoclick, false, game)  --You can put any script here
+			task.wait() --change the time example task.wait(0.1 or your choice)
+		end
+	end)
+	
+	script.Parent.MouseButton1Up:Connect(function()
+		isPressed = false
+	end)
+end;
+task.spawn(C_4);
+
+return G2L["1"], require;
