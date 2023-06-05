@@ -7,7 +7,7 @@
  Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER
 ]=]
 
--- Instances: 4 | Scripts: 1 | Modules: 0
+-- Instances: 6 | Scripts: 2 | Modules: 0
 local G2L = {};
 
 -- StarterGui.ScreenGui
@@ -17,8 +17,8 @@ G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 -- StarterGui.ScreenGui.Frame
 G2L["2"] = Instance.new("Frame", G2L["1"]);
 G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-G2L["2"]["Size"] = UDim2.new(0, 312, 0, 54);
-G2L["2"]["Position"] = UDim2.new(0.30788174271583557, 0, 0.17835670709609985, 0);
+G2L["2"]["Size"] = UDim2.new(0, 312, 0, 112);
+G2L["2"]["Position"] = UDim2.new(0.30788174271583557, 0, 0.06212424859404564, 0);
 
 -- StarterGui.ScreenGui.Frame.TextButton
 G2L["3"] = Instance.new("TextButton", G2L["2"]);
@@ -32,6 +32,20 @@ G2L["3"]["Position"] = UDim2.new(0.1794871836900711, 0, 0.06613759696483612, 0);
 
 -- StarterGui.ScreenGui.Frame.TextButton.LocalScript
 G2L["4"] = Instance.new("LocalScript", G2L["3"]);
+
+
+-- StarterGui.ScreenGui.Frame.TextButton
+G2L["5"] = Instance.new("TextButton", G2L["2"]);
+G2L["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5"]["TextSize"] = 14;
+G2L["5"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["5"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["5"]["Size"] = UDim2.new(0, 200, 0, 50);
+G2L["5"]["Text"] = [[S]];
+G2L["5"]["Position"] = UDim2.new(0.1794871836900711, 0, 0.5125661492347717, 0);
+
+-- StarterGui.ScreenGui.Frame.TextButton.LocalScript
+G2L["6"] = Instance.new("LocalScript", G2L["5"]);
 
 
 -- StarterGui.ScreenGui.Frame.TextButton.LocalScript
@@ -59,5 +73,30 @@ local script = G2L["4"];
 	end)
 end;
 task.spawn(C_4);
+-- StarterGui.ScreenGui.Frame.TextButton.LocalScript
+local function C_6()
+local script = G2L["6"];
+	-- // Variables \\ --
+	
+	local isPressed = false
+	
+	
+	-- // Scripts \\ --
+	
+	script.Parent.MouseButton1Down:Connect(function()
+		isPressed = true
+		while isPressed do --DONT TOUCH HERE
+			getfenv().keytoclick = "S"
+			local vim = game:service("VirtualInputManager")
+			vim:SendKeyEvent(true, keytoclick, false, game)  --You can put any script here
+			task.wait() --change the time example task.wait(0.1 or your choice)
+		end
+	end)
+	
+	script.Parent.MouseButton1Up:Connect(function()
+		isPressed = false
+	end)
+end;
+task.spawn(C_6);
 
 return G2L["1"], require;
